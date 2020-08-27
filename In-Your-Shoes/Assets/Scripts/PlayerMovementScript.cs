@@ -14,7 +14,7 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        //controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class PlayerMovementScript : MonoBehaviour
             velocity.x -= accelSpeed * Time.deltaTime;
         if (Input.GetKey("d"))
             velocity.x += accelSpeed * Time.deltaTime;
-        if (controller.isGrounded && Input.GetButton("Jump"))
+        /*if (controller.isGrounded && Input.GetButton("Jump"))
             velocity.y = jumpSpeed;
              
         if (velocity.x > speed)
@@ -31,6 +31,6 @@ public class PlayerMovementScript : MonoBehaviour
         else if (velocity.x < -speed)
             velocity.x = -speed;
         velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime);*/
      }
 }

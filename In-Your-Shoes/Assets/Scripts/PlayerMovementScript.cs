@@ -9,7 +9,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float jumpSpeed = 8.0F;
     public float gravity = 10.0F;
     private Vector2 velocity = Vector2.zero;
-    CharacterController controller;
+    private Rigidbody2D m_Rigidbody2D;
 
     // Start is called before the first frame update
     void Start()

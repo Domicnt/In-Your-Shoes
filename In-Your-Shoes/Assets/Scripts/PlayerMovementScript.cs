@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    public float speed = 42.0F;
-    public float jumpSpeed = 100.0F;
-    public float distToGround;
+    public float speed = 10.0F;
+    public float jumpSpeed = 7.0F;
     public bool grounded = true;
     private Rigidbody2D m_Rigidbody2D;
     private BoxCollider2D m_Collider;
@@ -15,7 +14,6 @@ public class PlayerMovementScript : MonoBehaviour
     void Start()
     {
         m_Collider = GetComponent<BoxCollider2D>();
-        distToGround = m_Collider.bounds.extents.y;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_Rigidbody2D.drag = 0F;
         m_Rigidbody2D.freezeRotation = true;
@@ -25,6 +23,8 @@ public class PlayerMovementScript : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        transform.LookAt(m_Rigidbody2D.transform.position);
+
         if (Input.GetKey("a"))
             m_Rigidbody2D.velocity = new Vector2(-speed, m_Rigidbody2D.velocity.y);
         if (Input.GetKey("d"))

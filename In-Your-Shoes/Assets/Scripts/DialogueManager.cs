@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
+    public Animator animator;
+
     // a queue of all the sentences that will be displayed on the screen
     private Queue<string> sentences;
     
@@ -22,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     public void startDialogue(Dialogue dialogue)
     {
         Debug.Log("starting dialogue with " + dialogue.name);
-
+        animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -51,5 +53,6 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         Debug.Log("End of conversation");
+        animator.SetBool("IsOpen", false);
     }
 }

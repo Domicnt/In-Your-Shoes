@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    public float accelSpeed = 1.0F;
-    public float speed = 6.0F;
-    public float jumpSpeed = 8.0F;
-    public float gravity = 10.0F;
-    private Vector2 velocity = Vector2.zero;
+    public float speed = 10.0F;
+    public float jumpSpeed = 22.5F;
+    public bool grounded = true;
     private Rigidbody2D m_Rigidbody2D;
+    private BoxCollider2D m_Collider;
 
     // Start is called before the first frame update
     void Start()
     {
-        //controller = GetComponent<CharacterController>();
+        m_Collider = GetComponent<BoxCollider2D>();
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_Rigidbody2D.drag = 0F;
+        m_Rigidbody2D.freezeRotation = true;
+        grounded = true;
     }
+
 
     // Update is called once per frame
     void Update() {
+        transform.LookAt(m_Rigidbody2D.transform.position);
+
         if (Input.GetKey("a"))
-            velocity.x -= accelSpeed * Time.deltaTime;
+            m_Rigidbody2D.velocity = new Vector2(-speed, m_Rigidbody2D.velocity.y);
         if (Input.GetKey("d"))
-            velocity.x += accelSpeed * Time.deltaTime;
-        /*if (controller.isGrounded && Input.GetButton("Jump"))
-            velocity.y = jumpSpeed;
-             
-        if (velocity.x > speed)
-            velocity.x = speed;
-        else if (velocity.x < -speed)
-            velocity.x = -speed;
-        velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);*/
-     }
+            m_Rigidbody2D.velocity = new Vector2(speed, m_Rigidbody2D.velocity.y);
+        else if (!Input.GetKey("a"))
+            m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+        if (Input.GetButton("Jump") && grounded)
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        grounded = true;
+        Debug.Log("grounded");
+    }
+    void OnCollisionExit2D(Collision2D col) {
+        grounded = false;
+        Debug.Log("groundedn't");
+    }
 }

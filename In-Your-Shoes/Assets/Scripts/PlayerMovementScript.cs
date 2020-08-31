@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovementScript : MonoBehaviour
 {
     public float speed = 10.0F;
-    public float jumpSpeed = 7.0F;
+    public float jumpSpeed = 22.5F;
     public bool grounded = true;
     private Rigidbody2D m_Rigidbody2D;
     private BoxCollider2D m_Collider;

@@ -36,8 +36,9 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
+        Debug.Log("Number of collision points: " + col.contactCount);
         grounded = true;
-        Debug.Log("grounded");
+        //Debug.Log("grounded");
     }
     void OnCollisionExit2D(Collision2D col) {
         grounded = false;

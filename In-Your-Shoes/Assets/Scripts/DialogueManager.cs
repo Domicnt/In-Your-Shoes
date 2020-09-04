@@ -12,15 +12,18 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    public bool texting;
 
     // Start is called before the first frame update
     void Start()
     {
-        sentences = new Queue<string>();    
+        sentences = new Queue<string>();
+        texting = false;
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
+        texting = true;
         animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
         sentences.Clear();
@@ -48,6 +51,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        texting = false;
         animator.SetBool("IsOpen", false);
     }
 }

@@ -18,8 +18,10 @@ public class CPUConvo : MonoBehaviour
     void Update()
     {
         float distFromPlayer = Vector2.Distance(player.transform.position, this.transform.position);
-        if (distFromPlayer <= 100 && hasTalked == 0)
+        if (distFromPlayer <= 5 && hasTalked == 0)
         {
+            hasTalked = 1;
+            Debug.Log("close enough");
             dialogueTrigger.TriggerDialogue();
         }
     }

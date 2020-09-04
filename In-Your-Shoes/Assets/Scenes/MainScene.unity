@@ -1115,6 +1115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 359327547}
   - component: {fileID: 359327546}
+  - component: {fileID: 359327549}
   - component: {fileID: 359327548}
   m_Layer: 0
   m_Name: Other Climber
@@ -1181,7 +1182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359327545}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.88, y: 9.4, z: -257.36267}
+  m_LocalPosition: {x: 21.21, y: 8.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1202,9 +1203,27 @@ MonoBehaviour:
   dialogue:
     name: Greg
     sentences:
-    - Hello, do you come here often?
-    - banana
-    - ooga booga
+    - Hi! Are you also looking to climb the mountain?
+    - "My name\u2019s Greg. I\u2019m looking to climb the mountain too, though I
+      don\u2019t know if I can make it."
+    - "I come from humble backgrounds, and I don\u2019t have much climbing gear. "
+    - "I\u2019ve heard that this mountain is a good place to find yourself, and that\u2019s
+      why I\u2019m here to climb the mountain."
+    - ' Would you like to climb up together?'
+--- !u!114 &359327549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359327545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc24c92412bb1294d8d33d8ddd8ced84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1637329628}
+  dialogueTrigger: {fileID: 359327548}
 --- !u!1 &395946903
 GameObject:
   m_ObjectHideFlags: 0

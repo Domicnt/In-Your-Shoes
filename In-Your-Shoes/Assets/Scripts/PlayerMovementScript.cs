@@ -6,7 +6,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     public float speed = 10.0F;
     public float jumpSpeed = 22.5F;
-    public bool grounded = true;
+    public bool grounded = false;
     private Rigidbody2D m_Rigidbody2D;
     private PolygonCollider2D m_Collider;
 
@@ -20,7 +20,7 @@ public class PlayerMovementScript : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_Rigidbody2D.drag = 0F;
         m_Rigidbody2D.freezeRotation = true;
-        grounded = true;
+        grounded = false;
         gameStart = true;
     }
 
@@ -43,19 +43,20 @@ public class PlayerMovementScript : MonoBehaviour
             m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
         if (Input.GetButton("Jump") && grounded)
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
-        grounded = false;
     }
 
 
-    void OnCollisionStay2D(Collision2D col) {
-        ContactPoint2D[] points = {};
-        col.GetContacts(points);
-        grounded = true;
-        /*foreach(ContactPoint2D p in points) {
-            if (p.collider == m_Collider || p.otherCollider == m_Collider) {
-                grounded = true;
-            } 
-        }*/
-        Debug.Log(col.contactCount);
+    void OnCollisionEnter2D(Collision2D col) {
+        Vector2 point2 = Vector2.zero;
+        ContactPoint2D point = col.GetContact(0);
+        point2 = m_Rigidbody2D.GetPoint(point2);
+        if (point.point.y < -point2.y) {
+            grounded = true;
+        }
+        Debug.Log("p1:" + point.point.y + "p2: " + -point2.y);
+    }
+
+    void OnCollisionExit2D(Collision2D col) {
+        grounded = false;
     }
 }

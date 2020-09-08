@@ -12,15 +12,28 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    // variable for if the DialogueManager is actually producing text at this moment
+    public bool texting;
+    public bool finishedTexting;
+    // variable storing the object that triggered the dialogue
+    public GameObject trigger;
+    public GameObject pastTrigger;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        sentences = new Queue<string>();    
+        sentences = new Queue<string>();
+        texting = false;
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, GameObject trigger)
     {
+        texting = true;
+        finishedTexting = false;
+        this.trigger = trigger;
+        pastTrigger = trigger;
+
         animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
         sentences.Clear();
@@ -48,6 +61,9 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        texting = false;
+        finishedTexting = true;
+        trigger = null;
         animator.SetBool("IsOpen", false);
     }
 }

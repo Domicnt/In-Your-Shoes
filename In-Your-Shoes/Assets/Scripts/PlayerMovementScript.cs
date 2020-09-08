@@ -10,6 +10,9 @@ public class PlayerMovementScript : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private PolygonCollider2D m_Collider;
 
+    private bool gameStart;
+    public DialogueTrigger dialogueTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +21,18 @@ public class PlayerMovementScript : MonoBehaviour
         m_Rigidbody2D.drag = 0F;
         m_Rigidbody2D.freezeRotation = true;
         grounded = false;
+        gameStart = true;
     }
 
 
     // Update is called once per frame
     void Update() {
+        if (gameStart)
+        {
+            dialogueTrigger.TriggerDialogue();
+            gameStart = false;
+        }
+
         transform.LookAt(m_Rigidbody2D.transform.position);
 
         if (Input.GetKey("a"))

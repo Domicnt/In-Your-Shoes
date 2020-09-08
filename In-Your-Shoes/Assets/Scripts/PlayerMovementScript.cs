@@ -36,7 +36,7 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D col) {
+    void OnCollisionStay2D(Collision2D col) {
         Vector2 point2 = Vector2.zero;
         ContactPoint2D point = col.GetContact(0);
         point2 = m_Rigidbody2D.GetPoint(point2);
